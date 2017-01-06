@@ -1,0 +1,62 @@
+html, body {
+    background-color: #100009;
+    color: #FFFFDD;
+    font-family: 'Space Mono', monospace;
+}
+
+body {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #200016;
+}
+
+a {
+    color: #FFFFDD;
+}
+
+.map {
+    border-bottom: 3px solid grey;
+    margin-bottom: 5em;
+}
+
+.mapparents {
+    color: #777744;
+}
+
+.event {
+    margin-bottom: 3em;
+}
+
+.command {
+    margin-bottom: 2em;
+}
+
+.command-text {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.face {
+    flex: none;
+    width: 96px;
+    margin-right: 2em;
+}
+
+.face > img {
+    margin: 0;
+}
+
+.face > p {
+    line-height: 0;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+#up {
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #FFFFDD;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
