@@ -210,7 +210,6 @@ for map in sorted(data['maps'], key = lambda m: m['order']):
         for p in data['maps']:
             if p['index'] == curr['parent_id']: curr = p
         parents.insert(0, curr['name'])
-        print('parent', curr['name'], curr['index'], curr['parent_id'])
     
     rend_maps += templ_map.format(index = map['index'], name = map['name'],
         parents = ' > '.join(parents), events = rend_events)
