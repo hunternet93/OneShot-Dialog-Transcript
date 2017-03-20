@@ -72,7 +72,7 @@ templ_map = '''
 </div>'''
 
 templ_event = '''
-<div class="event">
+<div class="event" id="map-{mapindex}-event-{index}">
     <h4>Event: {name}</h4>
     
     <div class="pages">{pages}</div>
@@ -200,7 +200,7 @@ for map in sorted(data['maps'], key = lambda m: m['order']):
                 
             if page_has_dialog: rend_pages += templ_page.format(page = pagenum, commands = rend_commands)
         
-        if event_has_dialog: rend_events += templ_event.format(name = event['name'], pages = rend_pages)
+        if event_has_dialog: rend_events += templ_event.format(name = event['name'], pages = rend_pages, mapindex = map['order'], index = event['index'])
     
     parents = []
     curr = map
