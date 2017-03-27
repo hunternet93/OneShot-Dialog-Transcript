@@ -1,7 +1,8 @@
 import json
 import re
+import os
 
-faces = ['alula_gasp', 'alula_oh', 'alula', 'alula_pout', 'alula_speak', 'blue_gatekeeper', 'bookbot', 'calamus_heh', 'calamus', 'calamus_sad', 'calamus_shame', 'calamus_shock', 'calamus_smile', 'calamus_speak', 'calamus_unknown', 'george1_hm', 'george1', 'george1_smile', 'george1_smug', 'george2_grr', 'george2_NO', 'george2', 'george2_sigh', 'george2_stress', 'george3_cry', 'george3', 'george3_sad', 'george3_sigh', 'george3_worry', 'george4_golly', 'george4_omg', 'george4_oops', 'george4', 'george4_smile', 'george5_aww', 'george5_heh', 'george5_hmm', 'george5', 'george5_smile', 'george6_fingerguns', 'george6', 'george6_point', 'george6_shrug', 'george6_smile', 'green_gatekeeper', 'kelvin', 'kip2', 'kip_heh', 'kip_huh', 'kip', 'kip_pout', 'kip_sad', 'kip_sigh', 'kip_wink', 'ling2', 'ling3', 'ling_hm2', 'ling_hm', 'ling_oh', 'ling', 'ling_shock', 'ling_sigh', 'ling_smile', 'magpie_hm', 'magpie_oh', 'magpie', 'magpie_smile', 'maize', 'maize_smile1', 'maize_smile2', 'mason', 'niko2', 'niko3', 'niko_83c', 'niko_cry', 'niko_distressed2', 'niko_distressed_meow', 'niko_distressed', 'niko_eyeclosed2', 'niko_eyeclosed', 'niko_gasmask', 'niko_huh', 'niko_less_sad', 'niko_pancakes', 'niko', 'niko_sad', 'niko_shock', 'niko_speak', 'niko_surprised', 'niko_what2', 'niko_what', 'niko_wtf2', 'niko_wtf', 'niko_yawn', 'plight_2b', 'plight_2', 'plight', 'plight_shock', 'plight_unknown', 'plight_why', 'plight_worry', 'plight_wtf', 'prophet_hmm', 'prophet_omg', 'prophet', 'prophet_sigh', 'red_gatekeeper', 'rowbot_off', 'rowbot', 'rue_dark', 'rue', 'rue_sad', 'rue_smile', 'rue_talk', 'rue_ttt', 'shepherd', 'silver2', 'silver_eyeclosed', 'silver_lookup', 'silver', 'watcher']
+faces = [n[:-4] for n in os.listdir('faces')]
 
 types = {
     'show_text': 101,
