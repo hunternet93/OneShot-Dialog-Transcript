@@ -1,0 +1,3 @@
+[submodule "mkxp-oneshot"]
+	path = mkxp-oneshot
+	url = https://github.com/elizagamedev/mkxp-oneshot.git

@@ -1,7 +1,11 @@
+import datetime
 import json
 import re
+import os
 
-faces = ['alula_gasp', 'alula_oh', 'alula', 'alula_pout', 'alula_speak', 'blue_gatekeeper', 'bookbot', 'calamus_heh', 'calamus', 'calamus_sad', 'calamus_shame', 'calamus_shock', 'calamus_smile', 'calamus_speak', 'calamus_unknown', 'george1_hm', 'george1', 'george1_smile', 'george1_smug', 'george2_grr', 'george2_NO', 'george2', 'george2_sigh', 'george2_stress', 'george3_cry', 'george3', 'george3_sad', 'george3_sigh', 'george3_worry', 'george4_golly', 'george4_omg', 'george4_oops', 'george4', 'george4_smile', 'george5_aww', 'george5_heh', 'george5_hmm', 'george5', 'george5_smile', 'george6_fingerguns', 'george6', 'george6_point', 'george6_shrug', 'george6_smile', 'green_gatekeeper', 'kelvin', 'kip2', 'kip_heh', 'kip_huh', 'kip', 'kip_pout', 'kip_sad', 'kip_sigh', 'kip_wink', 'ling2', 'ling3', 'ling_hm2', 'ling_hm', 'ling_oh', 'ling', 'ling_shock', 'ling_sigh', 'ling_smile', 'magpie_hm', 'magpie_oh', 'magpie', 'magpie_smile', 'maize', 'maize_smile1', 'maize_smile2', 'mason', 'niko2', 'niko3', 'niko_83c', 'niko_cry', 'niko_distressed2', 'niko_distressed_meow', 'niko_distressed', 'niko_eyeclosed2', 'niko_eyeclosed', 'niko_gasmask', 'niko_huh', 'niko_less_sad', 'niko_pancakes', 'niko', 'niko_sad', 'niko_shock', 'niko_speak', 'niko_surprised', 'niko_what2', 'niko_what', 'niko_wtf2', 'niko_wtf', 'niko_yawn', 'plight_2b', 'plight_2', 'plight', 'plight_shock', 'plight_unknown', 'plight_why', 'plight_worry', 'plight_wtf', 'prophet_hmm', 'prophet_omg', 'prophet', 'prophet_sigh', 'red_gatekeeper', 'rowbot_off', 'rowbot', 'rue_dark', 'rue', 'rue_sad', 'rue_smile', 'rue_talk', 'rue_ttt', 'shepherd', 'silver2', 'silver_eyeclosed', 'silver_lookup', 'silver', 'watcher']
+face_files = os.listdir('./Faces')
+faces = [f[:-4] for f in face_files if f.endswith('.png')]
+print(faces)
 
 types = {
     'show_text': 101,
@@ -26,6 +30,8 @@ data = json.load(open('extracted.json'))
 
 # Maps > Events > Pages > List > Commands
 
+current_date = datetime.datetime.now().isoformat()[:10]
+
 templ_main = '''
 <html>
     <head>
@@ -36,6 +42,7 @@ templ_main = '''
     <body>
         <div id="header">
             <h1>OneShot Dialoge Transcript</h1>
+            <p><em>Last updated {current_date} &#8212; <a href="https://github.com/hunternet93/OneShot-Dialog-Transcript">project on GitHub</a></em></p>
         </div>
         
         <script>
@@ -168,7 +175,7 @@ for map in sorted(data['maps'], key = lambda m: m['order']):
                         text = text[len(face)+1:]
                         
                         if face in faces:
-                            image = '<img src="faces/{}.png">'.format(face)
+                            image = '<img src="Faces/{}.png">'.format(face)
                     
                     text = re.sub('\\@.*?\s', '', text)                    
                     text = text.replace(r'\p', '<span class="playername">Player</span>')
@@ -217,4 +224,4 @@ for map in sorted(data['maps'], key = lambda m: m['order']):
 
     rend_mapmenu_items += templ_mapmenu_item.format(index = map['index'], name = map['name'], indent = 'margin-left: '+str(len(parents)*2)+'em')
 
-open('dialog.html', 'w').write(templ_main.format(mapmenu = rend_mapmenu_items, maps = rend_maps))
+open('dialog.html', 'w').write(templ_main.format(mapmenu = rend_mapmenu_items, maps = rend_maps, current_date = current_date))
